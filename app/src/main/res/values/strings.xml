@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MorpionTP</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="win">win</string>
+    <string name="loose">loose</string>
+    <string name="draw">draw</string>
+    <string name="grid">grid</string>
+    <string name="reset">Reset</string>
+</resources>

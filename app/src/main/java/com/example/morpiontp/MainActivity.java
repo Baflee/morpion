@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
 
     //Fonction permettant de détecter la cellule du plateau actionné
     public void choisirCellule(View view) {
-        ImageButton button = (ImageButton) view;
         refPeutJouer(view);
         refGagne();
     }

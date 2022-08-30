@@ -89,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if(tv[tvWin[0]] == 2) {
                     gagne = 2;
                 }
-            } else if(mouvement == 9) {
+            }
+
+            if(mouvement == 9 && gagne == -1) {
                 gagne = 0;
             }
         }

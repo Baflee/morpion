@@ -16,23 +16,25 @@
         android:text="@string/player1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.119" />
 
     <TextView
         android:id="@+id/winlose"
-        android:layout_width="92dp"
+        android:layout_width="250dp"
         android:layout_height="39dp"
         android:gravity="center"
         android:scaleX="1.5"
         android:scaleY="1.5"
+        android:text="@string/winlose"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.232" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <ImageView
         android:id="@+id/grid"
@@ -53,82 +55,146 @@
         android:id="@+id/topleft"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/grid"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
     <ImageButton
         android:id="@+id/middlecenter"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="447dp" />
+        tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
     <ImageButton
         android:id="@+id/bottomleft"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.877"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="574dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/bottomcenter"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.877"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="572dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/bottomright"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.877"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="287dp"
-        tools:layout_editor_absoluteY="574dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/topright"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="286dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/middleright"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/grid"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="287dp"
-        tools:layout_editor_absoluteY="448dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/middleleft"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:layout_marginStart="32dp"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toStartOf="@+id/grid"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.686"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="448dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/topcenter"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="click"
+        android:contentDescription="@string/description_case"
+        android:onClick="choisirCellule"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499"
         app:srcCompat="@drawable/cell"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="325dp" />
+        tools:ignore="ImageContrastCheck" />
 
     <Button
         android:id="@+id/reset"
@@ -138,6 +204,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="307dp"
         android:layout_marginBottom="58dp"
+        android:onClick="resetPlateau"
         android:text="@string/reset"
         app:layout_constraintBottom_toTopOf="@+id/grid"
         app:layout_constraintEnd_toEndOf="parent"

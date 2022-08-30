@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.tictactoeicon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        TextView score = findViewById(R.id.score);
+        score.setText(" J1 - " + 0 + "       Draw - " + 0 + "       J2 - " + 0 );
         refCases();
     }
 
@@ -152,9 +157,7 @@ public class MainActivity extends AppCompatActivity {
         TextView score = findViewById(R.id.score);
 
         for(int[] tvWin : tvWins) {
-            if (tv[tvWin[0]] == tv[tvWin[1]] &&
-                tv[tvWin[1]] == tv[tvWin[2]] &&
-                tv[tvWin[0]] != 0) {
+            if (tv[tvWin[1]] == tv[tvWin[2]] && tv[tvWin[0]] == tv[tvWin[1]] && tv[tvWin[0]] != 0) {
 
                 if (tv[tvWin[0]] == 1) {
                     gagne = 1;

@@ -13,25 +13,48 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    Random rand = new Random();
+
     //Plateau & Cellules
     private int [] tv = {0,0,0,0,0,0,0,0,0};
     private ImageButton[] tb = new ImageButton[9];
+
+    /*
+     * Tour (variable peutjouer) :
+     * true : Tour du joueur 1
+     * false : Tour du joueur 2
+     */
     private boolean peutjouer = true;
 
-    //Type de Jeu : 1 Joueur = Joueur vs hasard | 2 Joueurs = LAN
+    /*
+    * Type de Jeu :
+    * 1 : Joueur vs Bot (random number choose)
+    * 2 : Joueur vs Joueur (on the same phone)
+     */
     private int joueur = 2;
-    Random rand = new Random();
 
-
-    //Score
+    //Variable de Scores
     private int joueur1Score = 0;
     private int joueur2Score = 0;
     private int drawScore = 0;
 
-    //Mouvement : Si c'est egale a 9 = draws
+    //Mouvement : 9 mouvements sans position gagnante = Match Nul
     private int mouvement = 0;
 
-    // Variable gagnant + postion gagnante
+    /*
+     * Fini (variable fini) :
+     * false : Partie en cours
+     * true :  Partie terminée
+     *
+     * Gagnant (variable gagne) :
+     * -1 : Partie en Cours
+     * 0 : Match Nul
+     * 1 : Joueur 1 Gagnant
+     * 2 : Joueur 2 Gagnant
+     *
+     * Position Gagnante (variable tvWins) :
+     * Contient toutes les positions permettant de gagner une partie
+     */
     private boolean fini = false;
     private int gagne = -1;
     int[][] tvWins = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
@@ -45,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         refCases();
     }
 
+    //Attribution des boutons selon leur position
     private void refCases() {
         tb[0] = (ImageButton)findViewById(R.id.topleft);
         tb[1] = (ImageButton)findViewById(R.id.topcenter);
@@ -57,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
         tb[8] = (ImageButton)findViewById(R.id.bottomright);
     }
 
+    // Fonction permettant de changer le type de jeu
     public void refJoueur(View view) {
-        Button gamemodeplayer = (Button) view;
+        Button gamemode = (Button) view;
         if(joueur == 2) {
-            gamemodeplayer.setText("1 Joueur");
+            gamemode.setText("1 Joueur");
             joueur = 1;
 
             if(!peutjouer) {
@@ -68,11 +93,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
         } else {
-            gamemodeplayer.setText("2 Joueurs");
+            gamemode.setText("2 Joueurs");
             joueur = 2;
         }
     }
 
+    // Fonction permettant de jouer et de changer de tour
     private void refPeutJouer(View view) {
         ImageButton button = (ImageButton) view;
 
@@ -97,7 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 peutjouer = false;
                 mouvement++;
 
-                Joueur2ChoisisCellule();
+                refGagne();
+
+                if(fini != true) {
+                    Joueur2ChoisisCellule();
+                }
 
             } else if (joueur == 2) {
                 tb[index].setImageResource(R.drawable.cello);
@@ -110,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    // Fonction vérifiant l'état du jeu selon le nombre de mouvement, positions gagnantes
     private void refGagne() {
         TextView matchState = findViewById(R.id.winlose);
         TextView score = findViewById(R.id.score);
@@ -156,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
         score.setText(" J1 - " + joueur1Score + "       Draw - " + drawScore + "       J2 - " + joueur2Score );
     };
 
+    //Fonction permettant un choix aleatoire
     private void Joueur2ChoisisCellule() {
         TextView status = findViewById(R.id.player);
         if(joueur == 1 && mouvement < 8) {
@@ -172,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Fonction permettant de réinitialiser le jeu
     public void resetPlateau(View view) {
         for (int i = 0; i < tv.length; i++) {
             tv[i] = 0;
@@ -184,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
         refGagne();
     }
 
+    //Fonction permettant de réinitialiser le score
     public void resetScore(View view) {
         joueur1Score = 0;
         joueur2Score = 0;
@@ -192,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         refGagne();
     }
 
+    //Fonction permettant de détecter la cellule du plateau actionné
     public void choisirCellule(View view) {
         ImageButton button = (ImageButton) view;
         refPeutJouer(view);

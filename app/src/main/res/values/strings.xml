@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">MorpionTP</string>
+    <string name="app_name">Tic Tac Toe</string>
     <string name="player1">Joueur 1</string>
     <string name="player2">Joueur 2</string>
+    <string name="match1joueur">1 Joueur</string>
+    <string name="match2joueurs">2 Joueurs</string>
     <string name="win">Win</string>
     <string name="loose">Loose</string>
     <string name="draw">Draw</string>
     <string name="grid">Grid</string>
-    <string name="reset">Reset</string>
+    <string name="reset_partie">Reset Partie</string>
+    <string name="reset_score">Reset Score</string>
     <string name="description_case">Case</string>
     <string name="winlose" />
 </resources>

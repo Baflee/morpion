@@ -10,12 +10,28 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+    //Plateau & Cellules
     private int [] tv = {0,0,0,0,0,0,0,0,0};
     private ImageButton[] tb = new ImageButton[9];
     private boolean peutjouer = true;
-    private int joueur = 1;
+
+    //Type de Jeu : 1 Joueur = Joueur vs hasard | 2 Joueurs = LAN
+    private int joueur = 2;
+    Random rand = new Random();
+
+
+    //Score
+    private int joueur1Score = 0;
+    private int joueur2Score = 0;
+    private int drawScore = 0;
+
+    //Mouvement : Si c'est egale a 9 = draws
     private int mouvement = 0;
+
+    // Variable gagnant + postion gagnante
     private boolean fini = false;
     private int gagne = -1;
     int[][] tvWins = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8},
@@ -41,6 +57,22 @@ public class MainActivity extends AppCompatActivity {
         tb[8] = (ImageButton)findViewById(R.id.bottomright);
     }
 
+    public void refJoueur(View view) {
+        Button gamemodeplayer = (Button) view;
+        if(joueur == 2) {
+            gamemodeplayer.setText("1 Joueur");
+            joueur = 1;
+
+            if(!peutjouer) {
+                Joueur2ChoisisCellule();
+            }
+
+        } else {
+            gamemodeplayer.setText("2 Joueurs");
+            joueur = 2;
+        }
+    }
+
     private void refPeutJouer(View view) {
         ImageButton button = (ImageButton) view;
 
@@ -59,25 +91,28 @@ public class MainActivity extends AppCompatActivity {
 
             if (peutjouer) {
                 tb[index].setImageResource(R.drawable.cellx);
-                joueur = 1;
                 TextView status = findViewById(R.id.player);
                 tv[index] = 1;
-                status.setText("Joueur 1");
+                status.setText("Joueur 2");
                 peutjouer = false;
-            } else {
+                mouvement++;
+
+                Joueur2ChoisisCellule();
+
+            } else if (joueur == 2) {
                 tb[index].setImageResource(R.drawable.cello);
-                joueur = 2;
                 TextView status = findViewById(R.id.player);
                 tv[index] = 2;
-                status.setText("Joueur 2");
+                status.setText("Joueur 1");
                 peutjouer = true;
+                mouvement++;
             }
-            mouvement++;
         }
     };
 
     private void refGagne() {
         TextView matchState = findViewById(R.id.winlose);
+        TextView score = findViewById(R.id.score);
 
         for(int[] tvWin : tvWins) {
             if (tv[tvWin[0]] == tv[tvWin[1]] &&
@@ -96,25 +131,46 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        switch(gagne) {
-            case -1:
-                matchState.setText("");
-                break;
-            case 0:
-                matchState.setText("Match Nul");
-                fini = true;
-                break;
-            case 1:
-                matchState.setText("Joueur 1 Gagnant");
-                fini = true;
-                break;
-            case 2:
-                matchState.setText("Joueur 2 Gagnant");
-                fini = true;
-                break;
+        if(fini != true) {
+            switch (gagne) {
+                case -1:
+                    matchState.setText("");
+                    break;
+                case 0:
+                    matchState.setText("Match Nul");
+                    drawScore++;
+                    fini = true;
+                    break;
+                case 1:
+                    matchState.setText("Joueur 1 Gagnant");
+                    joueur1Score++;
+                    fini = true;
+                    break;
+                case 2:
+                    matchState.setText("Joueur 2 Gagnant");
+                    joueur2Score++;
+                    fini = true;
+                    break;
+            }
         }
+        score.setText(" J1 - " + joueur1Score + "       Draw - " + drawScore + "       J2 - " + joueur2Score );
     };
 
+    private void Joueur2ChoisisCellule() {
+        TextView status = findViewById(R.id.player);
+        if(joueur == 1 && mouvement < 8) {
+            while(!peutjouer) {
+                int randomIndex = rand.nextInt(8);
+                if(tv[randomIndex] == 0) {
+                    tb[randomIndex].setImageResource(R.drawable.cello);
+                    tv[randomIndex] = 2;
+                    status.setText("Joueur 1");
+                    mouvement++;
+                    peutjouer = true;
+                }
+            }
+        }
+    }
 
     public void resetPlateau(View view) {
         for (int i = 0; i < tv.length; i++) {
@@ -128,6 +184,13 @@ public class MainActivity extends AppCompatActivity {
         refGagne();
     }
 
+    public void resetScore(View view) {
+        joueur1Score = 0;
+        joueur2Score = 0;
+        drawScore = 0;
+        resetPlateau(view);
+        refGagne();
+    }
 
     public void choisirCellule(View view) {
         ImageButton button = (ImageButton) view;

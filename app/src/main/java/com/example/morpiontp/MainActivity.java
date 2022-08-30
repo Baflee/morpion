@@ -15,8 +15,14 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     Random rand = new Random();
 
-    //Plateau & Cellules
+    /* Plateau & Cases :
+     * 0 : case vide
+     * 1 : case croix
+     * 2 : case rond
+     */
     private int [] tv = {0,0,0,0,0,0,0,0,0};
+
+
     private ImageButton[] tb = new ImageButton[9];
 
     /*
@@ -88,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             gamemode.setText("1 Joueur");
             joueur = 1;
 
-            if(!peutjouer) {
+            if(!peutjouer && !fini) {
                 Joueur2ChoisisCellule();
             }
 
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if (tv[index] == 0 && fini == false) {
+        if (tv[index] == 0 && !fini) {
 
             if (peutjouer) {
                 tb[index].setImageResource(R.drawable.cellx);
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 refGagne();
 
-                if(fini != true) {
+                if(!fini) {
                     Joueur2ChoisisCellule();
                 }
 
@@ -162,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(fini != true) {
+        if(!fini) {
             switch (gagne) {
                 case -1:
                     matchState.setText("");
